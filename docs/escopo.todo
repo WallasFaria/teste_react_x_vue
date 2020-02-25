@@ -1,0 +1,10 @@
+Como cliente convidade:
+  ☐ Listar produtos
+  ☐ Registrar-se
+  ☐ Autenticar-se
+Como cliente autenticado:
+  ☐ Editar perfil
+  ☐ Crud meus enderecos
+  ☐ Cadastrar pedido
+  ☐ Visualizar meus pedidos
+  ☐ Cancelar pedido
