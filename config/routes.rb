@@ -3,6 +3,15 @@ Rails.application.routes.draw do
     resources :produtos, only: %i[index]
     resources :clientes, only: %i[show update]
     resources :enderecos
-    resources :pedidos, only: %i[index show create]
+    devise_for :clientes, path: '',
+                          path_names: {
+                            sign_in: 'login',
+                            sign_out: 'logout',
+                            registration: 'signup'
+                          },
+                          controllers: {
+                            sessions: 'sessions',
+                            registrations: 'registrations'
+                          }
   end
 end
