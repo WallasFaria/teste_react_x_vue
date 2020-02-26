@@ -72,7 +72,7 @@ def gerar_pedido(cliente)
     valor_total: p2.preco * 2
   )
 
-  pedido = Pedido.create(]
+  pedido = Pedido.create(
     status: :novo,
     cliente: cliente,
     endereco_entrega_id: cliente.enderecos.last.id,
