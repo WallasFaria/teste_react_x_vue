@@ -1,10 +1,11 @@
 Como cliente convidade:
-  ☐ Listar produtos
-  ☐ Registrar-se
-  ☐ Autenticar-se
+  ✔ Listar produtos @done(20-02-26 02:11)
+  ☐ Filtar produtos
+  ✔ Registrar-se @done(20-02-26 02:11)
+  ✔ Autenticar-se @done(20-02-26 02:11)
 Como cliente autenticado:
-  ☐ Editar perfil
-  ☐ Crud meus enderecos
-  ☐ Cadastrar pedido
-  ☐ Visualizar meus pedidos
-  ☐ Cancelar pedido
+  ✔ Editar perfil @done(20-02-26 02:12)
+  ✔ Crud meus enderecos @done(20-02-26 02:12)
+  ✔ Cadastrar pedido @done(20-02-26 02:12)
+  ✔ Visualizar meus pedidos @done(20-02-26 02:12)
+  ✔ Cancelar pedido @done(20-02-26 02:12)
