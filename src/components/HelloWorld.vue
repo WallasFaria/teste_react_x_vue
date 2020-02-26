@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <div>
-      <input v-model="novoProduto" />
+      <input v-model="novoProduto" @keypress.enter="add()" />
       <button @click="add()">Add</button>
     </div>
     <ul>
@@ -43,8 +43,22 @@ export default Vue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.hello {
-  background: #fafafa;
-  padding: 50px;
+ul {
+  width: 300px;
+  margin: 20px auto;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+
+  li {
+    padding: 10px 15px;
+    border-bottom: 2px solid #eee;
+    list-style: none;
+    text-align: left;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 </style>
