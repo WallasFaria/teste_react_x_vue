@@ -9,3 +9,5 @@ Como cliente autenticado:
   ✔ Cadastrar pedido @done(20-02-26 02:12)
   ✔ Visualizar meus pedidos @done(20-02-26 02:12)
   ✔ Cancelar pedido @done(20-02-26 02:12)
+
+☐ Exibir permissões no corpo ou no header de cada requisição
