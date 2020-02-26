@@ -8,4 +8,14 @@ class Cliente < ApplicationRecord
          jwt_revocation_strategy: JwtBlacklist
 
   has_many :enderecos
+  has_many :pedidos
+
+  with_options presence: true do
+    validates :nome
+    validates :sobrenome
+    validates :email, uniqueness: true
+    validates :password, on: :create
+    validates :cpf, uniqueness: true
+    validates :telefone
+  end
 end
