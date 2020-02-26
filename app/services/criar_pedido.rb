@@ -4,14 +4,19 @@ class CriarPedido
   end
 
   def call
+    pedido = Pedido.new @params.except(:itens)
+
+    pedido.status = :novo
+
     Pedido.transaction do
-      pedido = Pedido.new @params.except(:itens)
       @params[:itens].each do |p_item|
         pedido.itens << Item.new(p_item)
       end
       pedido.save!
     end
+
+    pedido
   rescue StandardError => e
-    OpenStruct.new valid?: false, errors: e
+    OpenStruct.new valid?: false, errors: pedido.errors
   end
 end

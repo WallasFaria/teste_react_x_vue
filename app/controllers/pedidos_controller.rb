@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 class PedidosController < ApplicationController
+  before_action :authenticate_cliente!
+
   def index
-    @pedidos = Pedido.all
+    @pedidos = cliente_atual.pedidos.all
   end
 
   def show
-    @pedido = Pedido.find(params[:id])
+    @pedido = cliente_atual.pedidos.find(params[:id])
   end
 
   def create
-    @pedido = Pedido.new(pedido_params)
+    @pedido = CriarPedido.new(pedido_params).call
 
-    if @pedido.save
+    if @pedido.valid?
       render :show, status: :created, location: @pedido
     else
       render json: @pedido.errors, status: :unprocessable_entity
@@ -22,12 +24,12 @@ class PedidosController < ApplicationController
   private
 
   def pedido_params
-    params.require(:pedido).permit(
-      :cliente_id,
+    params.permit(
       :cliente_nome,
       :cliente_sobrenome,
       :cliente_email,
       :cliente_telefone,
+      :endereco_entrega_id,
       :endereco_entrega_rua,
       :endereco_entrega_numero,
       :endereco_entrega_complemento,
@@ -35,10 +37,16 @@ class PedidosController < ApplicationController
       :endereco_entrega_cep,
       :endereco_entrega_cidade,
       :endereco_entrega_uf,
-      :itens,
       :status,
       :subtotal,
-      :total
-    )
+      :total,
+      itens: %i[
+        produto_id
+        produto_nome
+        quantidade
+        valor_unitario
+        valor_total
+      ]
+    ).merge(cliente_id: cliente_atual.id)
   end
 end
