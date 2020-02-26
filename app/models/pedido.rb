@@ -31,7 +31,17 @@ class Pedido < ApplicationRecord
     validates :endereco_entrega_uf, if: -> { @endereco_entrega_id.blank? }
   end
 
+  validate :itens_validos
+
   private
+
+  def itens_validos
+    itens.each_with_index do |item, i|
+      unless item.valid?
+        item.errors.each { |k, v| errors.add("itens[#{i}].#{k}", v) }
+      end
+    end
+  end
 
   def preenche_informacoes_do_cliente
     self.cliente_nome = cliente.nome
