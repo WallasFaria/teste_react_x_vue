@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class EnderecosController < ApplicationController
+  before_action :authenticate_cliente!
   before_action :set_endereco, only: %i[show update destroy]
 
   def index
-    @enderecos = Endereco.all
+    @enderecos = cliente_atual.enderecos.all
   end
 
   def show; end
@@ -34,10 +35,12 @@ class EnderecosController < ApplicationController
   private
 
   def set_endereco
-    @endereco = Endereco.find(params[:id])
+    @endereco = cliente_atual.enderecos.find(params[:id])
   end
 
   def endereco_params
-    params.require(:endereco).permit(:cliente_id, :tipo, :rua, :numero, :complemento, :bairro, :cep, :cidade, :uf)
+    params.require(:endereco)
+      .permit(:tipo, :rua, :numero, :complemento, :bairro, :cep, :cidade, :uf)
+      .merge(cliente_id: cliente_atual.id)
   end
 end
