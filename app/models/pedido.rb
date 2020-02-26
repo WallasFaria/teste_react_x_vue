@@ -33,6 +33,10 @@ class Pedido < ApplicationRecord
 
   validate :itens_validos
 
+  def pode_ser_cancelado?
+    novo? || aprovado?
+  end
+
   private
 
   def itens_validos
